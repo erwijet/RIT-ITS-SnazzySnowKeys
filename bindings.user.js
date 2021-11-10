@@ -1,133 +1,78 @@
 // ==UserScript==
-// @name         SNow Bindings
+// @name         SNow Snippets
 // @namespace    help.rit.edu
-// @version      1.1
-// @description  add helpful custom keybindings that can add snippets thatk be expanded with key patterns, as well as hotkeys
+// @version      1.0
+// @description  add helpful snippets that can be expanded with key patterns
 // @author       Tyler Holewinski (tshhelp)
 // @match        https://help.rit.edu/*
 // @icon         https://www.google.com/s2/favicons?domain=service-now.com
+// @updateURL    https://gist.githubusercontent.com/erwijet/316d2c0af4ed76814027b9334baf02aa/raw/snow_snippets.js
+// @downloadURL  https://gist.githubusercontent.com/erwijet/316d2c0af4ed76814027b9334baf02aa/raw/snow_snippets.js
 // @grant        none
 // ==/UserScript==
 
-const ActionVerbs = [
-    {
-        indicator: 'newtab',
-        run: ([caller, url, ..._]) => window.open(url, '_blank'),
-    },
-    {
-        indicator: 'expand',
-        run: ([caller, ...text]) => {
-            const str = text.reduce((acc, elem, i) => acc += elem + elem + (i < text.length - 1) ? ' ' : '');
+// Author Contact:
+// email: tsh6656@rit.edu
+// linkedin: linkedin.com/in/tylerholewinski
+// github: github.com/erwijet
 
-            // pass data to delput to handle actual expansion
-            for (let actionVerb of ActionVerbs) {
-                if (actionVerb == 'delput')
-                    actionVerb.run(caller, caller.trigger, text);
-            }
-    }
-    {
-        indicator: 'delput',
-        run: ([caller, deleted, expanded, ..._]) => {
-            const target = getActiveElement();
-            const newText = target.value.substring(0, target.selectionStart - deleted.length) + expanded + target.value.substring(target.selectionStart);
-            target.value = newText;
-        }
-    }
-];
+// Motivation:
+// Often times when writing reponses to tickets, there are specific sections of text you repeat over and over,
+// yet, you may not want to create a template because you only want to quickly insert a sentence and don't want
+// leave the keyboard. This is where Snippets shine. In the object SNIPPETS, you can defined a set of text expansions
+// that will automatically trigger whenever the trigger expansion is typed. For example, typing \iyhafq would
+// insert "If you have any further questions, please feel free to reach out to the Service Center by giving us a call at (585) 475-5000 or by starting a live chat at help.rit.edu"
+// It will, also of course, delete the trigger text.
 
-const PLACEHOLDERS = [
+// Please understand:
+// This user script works by recording a brief number of your last keystrokes. The number of keystrokes stored is equal to the longest possible trigger in the SNIPPETS object.
+// of course, these keystrokes aren't sent anywhere or used at all outside this script for the above purposes, but it is worth nothing the behavior.
+
+// Technical Explination:
+// this script regsiters a listener to the keyup event on the document object. Each time a key is pressed it is added to a list of keypresses. The list will auto-remove the oldest
+// element if the size of the list is greater than the longest possible trigger. Each snippet object is tested against the history of key presses to see if a trigger has been matched.
+// If it has, the current element is selected by recursivly iterating through the iframes on the page. The text of the current element is set to delete the last n characters where n
+// is the length of the snippet trigger, and then to append the trigegr expansion text. Once this process is complete, no more triggers will be tested until another key is called.
+// The history array of keystrokes is also wiped every time a snippet is triggered.
+
+// Array of snippets:
+// feel free to edit these to include your own :D
+// object verification will occur on page load
+const SNIPPETS = [
     {
-        indicator: '<current_url>',
-        resolve: (snippet) => window.location.href,
+        trigger: "\\qwe",
+        expansion: "If you have any further questions, please feel free to reach out to the Service Center by giving us a call at (585) 475-5000 or by starting a live chat at help.rit.edu"
     },
     {
-        indicator: '<trigger>',
-        resolve: (snippet) => snippet.trigger
+        trigger: "\\hald",
+        expansion: "Have a lovely day,\nRIT Service Center"
     },
     {
-        indicator: '<last_word>',
-        resolve: (snippet) => {
-            const target = getActiveElement();
-        }
-    },
-    {
-        indicator: '<selection>',
-        resolve: (snippet) => {
-            const target = getActiveElement();
-            return target.value.substring(target.selectionStart, target.selectionEnd - target.seletionStart);
-        }
+        trigger: "\\hi",
+        expansion: "Hello!\n\nThank you so much for reaching out to the Service Center"
     }
 ];
 
-const BINDINGS = [
-    {
-        trigger: '\\close',
-        result: 'expand If you have any further questions, please feel free to reach out to the Service Center by giving us a call at (585) 475-5000 or by starting a live chat at help.rit.edu\n\nHave a lovely day,\nRIT Service Center',
-    },
-    {
-        trigger: '\\have',
-        result: 'expand Have a lovely day,\nRIT Service Center',
-    },
-    {
-        trigger: '\\hi',
-        result: 'expand Hello!\n\nThank you so much for reaching out to the Service Center.',
-    },
-    {
-        trigger: '\\num',
-        result: 'expand (585) 475-5000',
-    },
-    {
-        trigger: '\\g',
-        result: 'expand give us a call',
-    },
-    {
-        trigger: '\\vi',
-        result: 'expand verify your identity',
-    },
-    {
-        trigger: '\\t',
-        result: 'expand Thanks!\nRIT Service Center',
-    },
-    {
-        trigger: '\\e',
-        result: 'expand escalating per',
-    },
-    {
-        trigger: '\\codes',
-        result: 'expand ID verified over zoom\nstudent id + external email, bday, zip',
-    },
-    {
-        trigger: '\\ol',
-        result: 'newtab <current_url>',
-    },
-    {
-        trigger: '\\lkb',
-        result: 'deleteandwrite <trigger><last_word> (<last_word>)[https://help.rit.edu/kb_view.do?sysparm_article=<last_word>]'
-    },
-    {
-        trigger: '\\sg',
-        result: 'newtab https://help.rit.edu/nav_to.do?uri=/$sn_global_search_results.do?sysparm_search=<clipboard>',
-    },
-];
+// ==BEGIN== //
 
-const maxTriggerLen = Math.max(...BINDINGS.map((e) => e.trigger?.length ?? 0));
+const maxTriggerLen = Math.max(...SNIPPETS.map(e => e.trigger?.length ?? 0));
 const keystrokeHistory = [];
 
-var getActiveElement = function (document) {
-    document = document || window.document;
+var getActiveElement = function( document ){
+     document = document || window.document;
 
-    if (
-        document.body === document.activeElement ||
-        document.activeElement.tagName == 'IFRAME'
-    ) {
-        const iframes = document.getElementsByTagName('iframe');
-        for (let i = 0; i < iframes.length; i++) {
-            const focused = getActiveElement(iframes[i].contentWindow.document);
-            if (focused !== false) {
-                return focused;
-            }
-        }
-    } else {
+     if( document.body === document.activeElement
+        || document.activeElement.tagName == 'IFRAME' ){
+         const iframes = document.getElementsByTagName('iframe');
+         for (let i = 0; i < iframes.length; i++) {
+             const focused = getActiveElement(iframes[i].contentWindow.document);
+             if (focused !== false) {
+                 return focused;
+             }
+         }
+     }
+
+    else {
         return document.activeElement;
     }
 };
@@ -135,69 +80,41 @@ var getActiveElement = function (document) {
 function keystrokeHistoryAppend(char) {
     keystrokeHistory.push(char);
     if (keystrokeHistory.length > maxTriggerLen) {
-        keystrokeHistory.shift(); // remove oldest element
+        keystrokeHistory.shift(); // remove oldest element off
     }
 }
 
-function validateBindingsObject() {
-    for (let binding of BINDINGS) {
-        if (
-            !Object.values(BindingType).includes(binding.type) ||
-            !binding.trigger ||
-            !binding.result
-        ) {
-            const err =
-                'USERSCRIPT ERROR: the following binding is invalid: ' +
-                JSON.stringify(binding);
-
-            alert(err);
-            throw err;
+function validateSnippetObject() {
+    let valid = true;
+    SNIPPETS.forEach(snippet => {
+        if (!snippet.trigger || !snippet.expansion) {
+            valid = false;
+            alert("USERSCRIPT ERROR: the following snippet is invalid: " + JSON.stringify(snippet));
+            throw new Error("USERSCRIPT ERROR: the following snippet is invalid: " + JSON.stringify(snippet));
         }
-    }
+    });
+    return valid;
 }
 
-async function hydrateBinding(binding) {
-    const hydrated = { ...binding };
-    for (let placeholder of PLACEHOLDERS) {
-        if (hydrated.result.includes(placeholder.indicator))
-            hydrated.result = hydrated.result.replace(
-                placeholder.indicator,
-                await placeholder.resolve(hydrated)
-            );
-    }
+function performSnippet(snippet) {
+    const target = getActiveElement();
+    const newText = target.value.substring(0, target.value.length - snippet.trigger.length) + snippet.expansion;
 
-    return hydrated;
-}
-
-async function resolveBinding(binding) {
-    binding = await hydrateBinding(binding);
-    const [ verbIndicator, args ] = binding.result.split(' ');
-    for (let verb of ActionVerbs) {
-            if (verb.indicator == verbIndicator) {
-                verb.run([ binding, ...args]);
-                return;
-            }
-        }
-    }
+    target.value = newText;
 }
 
 function doc_keyUp(e) {
     keystrokeHistoryAppend(e.key);
-
-    for (let binding of BINDINGS) {
-        if (
-            keystrokeHistory
-                .reduce((acc, e) => acc + e, '')
-                .includes(binding.trigger)
-        ) {
-            resolveBinding(binding);
+    for (let snippet of SNIPPETS) {
+        if (keystrokeHistory.reduce((acc, e) => acc + e, '').includes(snippet.trigger)) {
+            performSnippet(snippet);
             keystrokeHistory.clear();
             return;
         }
     }
 }
 
-(function () {
-    validateBindingsObject();
+(function() {
+    if (!validateSnippetObject()) return;
     document.addEventListener('keyup', doc_keyUp, false);
 })();
