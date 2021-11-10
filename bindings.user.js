@@ -5,6 +5,8 @@
 // @description  add helpful custom keybindings that can add snippets thatk be expanded with key patterns, as well as hotkeys
 // @author       Tyler Holewinski (tshhelp)
 // @match        https://help.rit.edu/*
+// @downloadURL  https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/unstable/bindings.user.js
+// @updateURL    https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/unstable/bindings.user.js
 // @icon         https://www.google.com/s2/favicons?domain=service-now.com
 // @grant        none
 // ==/UserScript==
