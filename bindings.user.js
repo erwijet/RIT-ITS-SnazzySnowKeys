@@ -6,8 +6,8 @@
 // @author       Tyler Holewinski (tshhelp)
 // @match        https://help.rit.edu/*
 // @icon         https://www.google.com/s2/favicons?domain=service-now.com
-// @updateURL    https://gist.githubusercontent.com/erwijet/316d2c0af4ed76814027b9334baf02aa/raw/snow_snippets.js
-// @downloadURL  https://gist.githubusercontent.com/erwijet/316d2c0af4ed76814027b9334baf02aa/raw/snow_snippets.js
+// @updateURL    https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/bindings.user.js
+// @downloadURL  https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/bindings.user.js
 // @grant        none
 // ==/UserScript==
 
