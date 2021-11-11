@@ -126,13 +126,19 @@ function validateSnippetObject() {
 
 function performSnippet(snippet) {
     const target = getActiveElement();
-    const newText = target.value.substring(0, target.value.length - snippet.trigger.length) + snippet.expansion;
+
+    let ptr = target.selectionStart;
+    while (target.value[ptr] == ' ')
+        if (--ptr < 0) return;
+
+    const newText = tagret.value.substring(0, ptr - snippet.trigger.length) + snippet.expansion + target.value.substring(ptr);
 
     target.value = newText;
 }
 
 function doc_keyUp(e) {
     keystrokeHistoryAppend(e.key);
+
     for (let snippet of SNIPPETS) {
         if (keystrokeHistory.reduce((acc, e) => acc + e, '').includes(snippet.trigger)) {
             performSnippet(snippet);
