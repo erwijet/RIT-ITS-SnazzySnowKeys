@@ -40,16 +40,44 @@
 // object verification will occur on page load
 const SNIPPETS = [
     {
+        trigger: "\\close",
+        expansion: "If you have any further questions, please feel free to reach out to the Service Center by giving us a call at (585) 475-5000 or by starting a live chat at help.rit.edu\n\nHave a lovely day,\nRIT Service Center"
+    },
+    {
         trigger: "\\qwe",
         expansion: "If you have any further questions, please feel free to reach out to the Service Center by giving us a call at (585) 475-5000 or by starting a live chat at help.rit.edu"
     },
     {
-        trigger: "\\hald",
+        trigger: "\\have",
         expansion: "Have a lovely day,\nRIT Service Center"
     },
     {
-        trigger: "\\hi",
+        trigger: "\\hel",
         expansion: "Hello!\n\nThank you so much for reaching out to the Service Center"
+    },
+    {
+        trigger: "\\num",
+        expansion: "(585) 475-5000"
+    },
+    {
+        trigger: "\\g",
+        expansion: "give us a call"
+    },
+    {
+        trigger: "\\vi",
+        expansion: "verify your identity"
+    },
+    {
+        trigger: "\\t",
+        expansion: "Thanks!\nRIT Service Center"
+    },
+    {
+        trigger: "\\e",
+        expansion: "escalating per"
+    },
+    {
+        trigger: "\\codes",
+        expansion: "ID verified over zoom\nstudent id + external email, bday, zip"
     }
 ];
 
