@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SNow Snippets
 // @namespace    help.rit.edu
-// @version      1.1.1
+// @version      1.2
 // @description  add helpful snippets that can be expanded with key patterns
 // @author       Tyler Holewinski (tshhelp)
 // @match        https://help.rit.edu/*
