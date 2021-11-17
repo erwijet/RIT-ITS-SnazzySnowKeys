@@ -6,6 +6,7 @@
 // @author       Tyler Holewinski (tshhelp)
 // @match        https://help.rit.edu/*
 // @match        https://ritstage.service-now.com/*
+// @match        https://help.rit.edu/now/workspace/agent/*
 // @downloadURL  https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/unstable/bindings.user.js
 // @updateURL    https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/unstable/bindings.user.js
 // @icon         https://www.google.com/s2/favicons?domain=service-now.com
@@ -116,8 +117,9 @@ const Actions = {
 
         const target = Util.getActiveElement();
         if (!target) return;
+
         target.value =
-            target.value.substring(0, target.selectionStart - deleteLength ?? snippet.trigger.length) +
+            target.value.substring(0, target.selectionStart - (deleteLength ?? snippet.trigger.length)) +
             expansion +
             target.value.substring(target.selectionStart);
     },
