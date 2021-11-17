@@ -7,8 +7,8 @@
 // @match        https://help.rit.edu/*
 // @match        https://ritstage.service-now.com/*
 // @match        https://help.rit.edu/now/workspace/agent/*
-// @downloadURL  https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v2.bindings.user.js
-// @updateURL    https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v2.bindings.user.js
+// @downloadURL  https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v2.1.bindings.user.js
+// @updateURL    https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v2.1.bindings.user.js
 // @icon         https://www.google.com/s2/favicons?domain=service-now.com
 // @grant        none
 // ==/UserScript==
