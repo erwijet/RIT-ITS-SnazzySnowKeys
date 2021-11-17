@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SNow Bindings v2.1 (unstable)
 // @namespace    help.rit.edu
-// @version      2.1
+// @version      2.2
 // @description  add helpful custom keybindings that can add snippets thatk be expanded with key patterns, as well as hotkeys
 // @author       Tyler Holewinski (tshhelp)
 // @match        https://help.rit.edu/*
@@ -124,7 +124,8 @@ const Actions = {
             target.value.substring(target.selectionStart);
     },
     newtab: (snippet) => {
-        let { trigger, url } = { ...snippet }?.args;
+        const { trigger, args } = { ...snippet };
+        let { url } = args;
 
         if (typeof url == 'function')
             url = url();
