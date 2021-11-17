@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SNow Bindings (unstable)
 // @namespace    help.rit.edu
-// @version      2.0
+// @version      2.1
 // @description  add helpful custom keybindings that can add snippets thatk be expanded with key patterns, as well as hotkeys
 // @author       Tyler Holewinski (tshhelp)
 // @match        https://help.rit.edu/*
