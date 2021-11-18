@@ -188,6 +188,13 @@ const SNIPPETS = [
         },
     },
     {
+        trigger: "\\cb",
+        action: Actions.expand,
+        args: {
+            expansion: '[code]<code>xxx</code>[/code]'
+        }
+    },
+    {
         trigger: '\\ep',
         action: Actions.expand,
         args: {
@@ -199,7 +206,7 @@ const SNIPPETS = [
         action: Actions.expand,
         args: {
             expansion:
-                'expand ID verified over zoom\nstudent id + external email, bday, zip',
+                'ID verified over zoom\nstudent id + external email, bday, zip',
         },
     },
     {
