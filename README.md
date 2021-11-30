@@ -4,6 +4,8 @@ A keyboard shortcuts userscript for ITS employees
 
 **Click [here](https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v2.2.bindings.user.js) the most up-to-date version** auto-updates are weird so you can always install the latest version there.
 
+If you would like a snippet to be created, feel free to open a PR and add it directly. Otherwise, you can open an issue and I can add it myself!
+
 Please note: each character in a snippet trigger must be typed sequentially. For example, if you type `\na <Backspace> um`, the screen may say `\num`, but the `\num` snippet will not be expanded. This is done in the event that you wish to manually write the snippet text without it expanding. Also, anytime you see `\n` in the expansion text, it denotes a new line.
 
 ## Basic Snippets
@@ -17,7 +19,7 @@ Trigger will be replaced with expansion text
 |`\num`|number|(585) 475-5000|
 |`\g`|give|give us a call|
 |`\vi`|verify identity|verify your identity|
-|`\t`|Thanks|Thanks!\nRIT Service Center|
+|`\thx`|Thanks|Thanks!\nRIT Service Center|
 |`\ep`|escalating per|escalating per|
 |`\codes`|Duo Codes|ID verified over zoom\nstudent id + external email, bday, zip|
 |`\cb`|Code Block|[code]&lt;code&gt;xxx&lt;/code&gt;[/code]|
@@ -29,6 +31,7 @@ Trigger will be replaced with expansion text
 |{KB Number} `\lkb`|Link KB|Wraps {KB Number} in the markdown syntax for a link. ex: `KB1234 \lkb` -> `[KB1234](https://help.rit.edu/kb_view.do?sysparm_article=KB1234)`|
 |{KB Number} `\lekb`|Link Escalation KB|Wraps {KB Number} in the markdown syntax for a link just like \lkb, but prefixes it with "escalating per". ex: `KB1234 \lekb` -> `escalating per [KB1234](https://help.rit.edu/kb_view.do?sysparm_article=KB1234`)
 |{expression} `\sg`|Search Globally|Searches {expression} globally in SNow in a new tab|
+|`\tn`|Ticket Number|Expands to the current ticket number|
 
 # Functional Snippets
 Snippet deletes itself and then performs an action, simlar to the function of a hotkey
