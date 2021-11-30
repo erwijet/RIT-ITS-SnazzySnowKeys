@@ -2,7 +2,7 @@
 
 A keyboard shortcuts userscript for ITS employees
 
-**Click [here](https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v2.1.bindings.user.js) the most up-to-date version** auto-updates are weird so you can always install the latest version there.
+**Click [here](https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v2.2.bindings.user.js) the most up-to-date version** auto-updates are weird so you can always install the latest version there.
 
 Please note: each character in a snippet trigger must be typed sequentially. For example, if you type `\na <Backspace> um`, the screen may say `\num`, but the `\num` snippet will not be expanded. This is done in the event that you wish to manually write the snippet text without it expanding. Also, anytime you see `\n` in the expansion text, it denotes a new line.
 
