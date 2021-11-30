@@ -201,6 +201,13 @@ const SNIPPETS = [
         },
     },
     {
+        trigger: '\\cb',
+        action: Actions.expand,
+        args: {
+            expansion: '[code]<code>xxx</code>[/code]'
+        }
+    },
+    {
         trigger: '\\tn',
         action: Actions.expand,
         args: {
