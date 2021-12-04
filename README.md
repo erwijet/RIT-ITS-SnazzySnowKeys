@@ -30,7 +30,6 @@ Trigger will be replaced with expansion text
 |---|---|---|
 |{KB Number} `\lkb`|Link KB|Wraps {KB Number} in the markdown syntax for a link. ex: `KB1234 \lkb` -> `[KB1234](https://help.rit.edu/kb_view.do?sysparm_article=KB1234)`|
 |{KB Number} `\lekb`|Link Escalation KB|Wraps {KB Number} in the markdown syntax for a link just like \lkb, but prefixes it with "escalating per". ex: `KB1234 \lekb` -> `escalating per [KB1234](https://help.rit.edu/kb_view.do?sysparm_article=KB1234`)
-|{expression} `\sg`|Search Globally|Searches {expression} globally in SNow in a new tab|
 |`\tn`|Ticket Number|Expands to the current ticket number|
 
 # Functional Snippets
@@ -38,3 +37,4 @@ Snippet deletes itself and then performs an action, simlar to the function of a 
 |Snippet|Mnemonic|Action|
 |---|---|---|
 |`\ol`|Open Link|Open the current url in a the current tab (duplicates the tab)|
+|{expression} `\sg`|Search Globally|Searches {expression} globally in SNow in a new tab|
