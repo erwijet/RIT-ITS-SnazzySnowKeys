@@ -63,7 +63,15 @@ class SnippetsPlugin {
         SnippetsPlugin._defprop('_strokeHistory', []);
         SnippetsPlugin._defprop('_snippets', SnippetsPlugin._buildSnippetsObj({
             "\\g": "give us a call",
-            "\\thx": "Thanks!<br />RIT Service Center"
+            "\\thx": "Thanks!<br />RIT Service Center",
+	    "\\have": "Have a lovely day,\nRIT Service Center",
+	    "\\close": "If you have any further questions, please feel free to reach out to the Service Center by giving us a call at (585) 475-5000 or by starting a live chat at help.rit.edu\n\nHave a lovely day,\nRIT Service Center",
+	    "\hi": "Hello!\n\nThank you so much for reaching out to the Service Center.",
+	    "\num": "(585) 475-5000",
+	    "\\vi": "verify your identity",
+	    "\\ep": "escalating per",
+	    "\\codes": "ID verified over zoom\nstudent id + external email, bday, zip",
+  	    "\\cb": "<code>xxx</code>"
         }));
         SnippetsPlugin._defprop('_maxTriggerLen', Math.max(...SnippetsPlugin._snippets.map(snippet => snippet.trigger.length)));
         SnippetsPlugin._defprop('_expandSnippet', (snippet) => {
