@@ -23,7 +23,6 @@ Trigger will be replaced with expansion text
 |`\thx`|Thanks|Thanks!\nRIT Service Center|
 |`\ep`|escalating per|escalating per|
 |`\codes`|Duo Codes|ID verified over zoom\nstudent id + external email, bday, zip|
-|`\cb`|Code Block|[code]&lt;code&gt;xxx&lt;/code&gt;[/code]|
 
 ## Dynamic Snippets
 |Snippet|Mnemonic|Action|
