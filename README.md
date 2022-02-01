@@ -6,9 +6,9 @@ A keyboard shortcuts userscript for ITS employees
 
 If you would like a snippet to be created, feel free to open a PR and add it directly. Otherwise, you can open an issue and I can add it myself!
 
-Please note: each character in a snippet trigger must be typed sequentially. For example, if you type `\na <Backspace> um`, the screen may say `\num`, but the `\num` snippet will not be expanded. This is done in the event that you wish to manually write the snippet text without it expanding. Also, anytime you see `\n` in the expansion text, it denotes a new line.
+Please note: snippets are not supported on all input fields-- only a certain subset have been enabled. Please reach out if there is an input field you would like enabled. Also, to enable the snippets feature on an approved text field, be sure to click the field first-- "tabbing" into the field will not enable the snippets.
 
-## Basic Snippets
+## Static Snippets
 Trigger will be replaced with expansion text
 
 |Snippet|Mnemonic|Expansion|
