@@ -27,6 +27,7 @@ Trigger will be replaced with expansion text
 
 ## Dynamic Snippets
 |Snippet|Mnemonic|Action|
+|---|---|---|
 |`\tn`|Ticket Number|Expands to the current ticket number|
 
 ## Wrapping Snippets
