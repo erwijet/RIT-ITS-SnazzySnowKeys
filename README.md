@@ -2,7 +2,7 @@
 
 A keyboard shortcuts userscript for ITS employees
 
-**Click [here](https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v2.2.bindings.user.js) the most up-to-date version** auto-updates are weird so you can always install the latest version there.
+**Click [here](https://github.com/erwijet/RIT-ITS-SnazzySnowKeys/raw/master/v3.0.bindings.user.js) the most up-to-date version** auto-updates are weird so you can always install the latest version there.
 
 If you would like a snippet to be created, feel free to open a PR and add it directly. Otherwise, you can open an issue and I can add it myself!
 
