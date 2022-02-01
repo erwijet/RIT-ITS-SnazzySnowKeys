@@ -13,8 +13,9 @@ Trigger will be replaced with expansion text
 
 |Snippet|Mnemonic|Expansion|
 |---|---|---|
-|`\have`|have|Have a lovely day,\nRIT Service Center|
 |`\close`|close|If you have any further questions, please feel free to reach out to the Service Center by giving us a call at (585) 475-5000 or by starting a live chat at help.rit.edu\n\nHave a lovely day,\nRIT Service Center|
+|`\sign`|Sign ticket|\nIf you have any further questions, please feel free to reach out to the Service Center by giving us a call at (585) 475-5000 or by starting a live chat at `[help.rit.edu](https://help.rit.edu)`\n\nHave a lovely day,\nRIT Service Center|
+|`\have`|have|Have a lovely day,\nRIT Service Center|
 |`\hi`|hi|Hello!\n\nThank you so much for reaching out to the Service Center.|
 |`\num`|number|(585) 475-5000|
 |`\g`|give|give us a call|
@@ -25,16 +26,24 @@ Trigger will be replaced with expansion text
 |`\cb`|Code Block|[code]&lt;code&gt;xxx&lt;/code&gt;[/code]|
 
 ## Dynamic Snippets
+|Snippet|Mnemonic|Action|
+|`\tn`|Ticket Number|Expands to the current ticket number|
+
+## Wrapping Snippets
 **note** `{parameter}` denotes a variable field
 |Snippet|Mnemonic|Action|
 |---|---|---|
 |{KB Number} `\lkb`|Link KB|Wraps {KB Number} in the markdown syntax for a link. ex: `KB1234 \lkb` -> `[KB1234](https://help.rit.edu/kb_view.do?sysparm_article=KB1234)`|
-|{KB Number} `\lekb`|Link Escalation KB|Wraps {KB Number} in the markdown syntax for a link just like \lkb, but prefixes it with "escalating per". ex: `KB1234 \lekb` -> `escalating per [KB1234](https://help.rit.edu/kb_view.do?sysparm_article=KB1234`)
-|`\tn`|Ticket Number|Expands to the current ticket number|
+|{KB Number} `\lekb`|Link Escalation KB|Wraps {KB Number} in the markdown syntax for a link just like \lkb, but prefixes it with "escalating per". ex: `KB1234 \lekb` -> `escalating per [KB1234](https://help.rit.edu/kb_view.do?sysparm_article=KB1234`)|
+|{Ticket Number} `\ltn`|Link Ticket Number|Wraps {t}
 
 # Functional Snippets
 Snippet deletes itself and then performs an action, simlar to the function of a hotkey
 |Snippet|Mnemonic|Action|
 |---|---|---|
-|`\ol`|Open Link|Open the current url in a the current tab (duplicates the tab)|
+|{KB Number} `\okb`|Open KB|Opens the {KB Number} in a new tab|
 |{expression} `\sg`|Search Globally|Searches {expression} globally in SNow in a new tab|
+|{expression} `\direc`|Directory|Attempts to match {expression} in the RIT directory. If {expression} is nothing, this will just open the RIT directory|
+|`\dup`|Duplicate|Duplicates the current tab|
+|{username} `\claws`|CLAWS|Attempts a CLAWS search for {username} in a new tab|
+|`\?`|Help|Opens this documenation page|
